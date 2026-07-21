@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+    /* Keep text at a consistent size across browsers and stop mobile browsers
+       (Safari/Chrome on iOS/Android) from auto-inflating or shrinking text,
+       which is a common cause of "looks different on each browser". */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-neutral-50 text-neutral-800;
+    /* Prevent any stray element from causing horizontal scroll / cutoff on
+       small screens. `clip` (not `hidden`) keeps the sticky header working. */
+    overflow-x: clip;
+  }
+
+  /* Media never overflows its container, keeping layouts screen-independent. */
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    height: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading text-neutral-900;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-xl border border-neutral-200/80 bg-white shadow-soft transition-shadow hover:shadow-soft-md;
+  }
+
+  .text-muted {
+    @apply text-neutral-600;
+  }
+
+  .link-subtle {
+    @apply text-neutral-600 transition-colors hover:text-primary-700;
+  }
+}
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
