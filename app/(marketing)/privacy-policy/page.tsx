@@ -4,8 +4,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
 
 const LAST_UPDATED = "July 20, 2026";
-// TODO(REQUIRED BEFORE LAUNCH): replace with your real, monitored contact email.
-const CONTACT_EMAIL = "[INSERT YOUR REAL EMAIL]";
+const CONTACT_EMAIL = siteConfig.contactEmail;
 
 export const metadata: Metadata = buildMetadata(
   "Privacy Policy",

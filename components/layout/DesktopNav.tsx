@@ -38,8 +38,9 @@ export function HeaderLogo() {
   return (
     <BrandLogo
       idSuffix="header"
-      markClassName="h-8 w-8 transition-transform group-hover:scale-[1.03]"
-      textClassName="text-lg"
+      markClassName="h-7 w-7 shrink-0 transition-transform group-hover:scale-[1.03] sm:h-8 sm:w-8"
+      textClassName="text-base sm:text-lg"
+      className="max-w-full"
     />
   );
 }

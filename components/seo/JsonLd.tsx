@@ -85,3 +85,43 @@ export function faqPageJsonLd(faqs: FaqItem[]): Record<string, unknown> {
     })),
   };
 }
+
+export type ArticleSchemaInput = {
+  title: string;
+  description: string;
+  path: string;
+  publishedAt: string;
+  updatedAt?: string;
+};
+
+export function articleJsonLd({
+  title,
+  description,
+  path,
+  publishedAt,
+  updatedAt,
+}: ArticleSchemaInput): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    url: resolveAbsoluteUrl(path),
+    datePublished: publishedAt,
+    dateModified: updatedAt ?? publishedAt,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": resolveAbsoluteUrl(path),
+    },
+  };
+}

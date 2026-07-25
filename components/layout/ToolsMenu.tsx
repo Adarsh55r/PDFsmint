@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, FileText, ImageIcon } from "lucide-react";
 
 import { toolCategories } from "@/lib/navigation";
+import { getToolTheme } from "@/lib/tool-icons";
 
 const categoryIcons: Record<string, React.ReactNode> = {
   "PDF Tools": <FileText className="h-4 w-4 text-primary-700" strokeWidth={1.75} aria-hidden />,
@@ -86,25 +87,38 @@ export function ToolsMenu() {
                   </p>
                 </div>
                 <ul className="space-y-1">
-                  {category.links.map((tool) => (
-                    <li key={`${category.label}-${tool.href}`}>
-                      <Link
-                        href={tool.href}
-                        onClick={() => setIsOpen(false)}
-                        tabIndex={isOpen ? 0 : -1}
-                        className="group/link block rounded-lg px-2 py-2 transition-colors hover:bg-neutral-50 focus-visible:bg-neutral-50"
-                      >
-                        <span className="block text-sm font-medium text-neutral-800 group-hover/link:text-primary-800">
-                          {tool.label}
-                        </span>
-                        {tool.description && (
-                          <span className="mt-0.5 block text-xs text-neutral-500">
-                            {tool.description}
+                  {category.links.map((tool) => {
+                    const { icon: Icon, iconBg, iconText } = getToolTheme(
+                      tool.href,
+                    );
+
+                    return (
+                      <li key={`${category.label}-${tool.href}`}>
+                        <Link
+                          href={tool.href}
+                          onClick={() => setIsOpen(false)}
+                          tabIndex={isOpen ? 0 : -1}
+                          className="group/link flex items-start gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-neutral-50 focus-visible:bg-neutral-50"
+                        >
+                          <span
+                            className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${iconBg} ${iconText}`}
+                          >
+                            <Icon className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
                           </span>
-                        )}
-                      </Link>
-                    </li>
-                  ))}
+                          <span className="min-w-0">
+                            <span className="block text-sm font-medium text-neutral-800 group-hover/link:text-primary-800">
+                              {tool.label}
+                            </span>
+                            {tool.description && (
+                              <span className="mt-0.5 block line-clamp-1 text-xs text-neutral-500">
+                                {tool.description}
+                              </span>
+                            )}
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}

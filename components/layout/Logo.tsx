@@ -90,6 +90,11 @@ type BrandLogoProps = {
   idSuffix?: string;
   /** Render as a link to the homepage. Defaults to true. */
   asLink?: boolean;
+  /**
+   * `dark` — default on light surfaces.
+   * `light` — for dark/mint brand surfaces (e.g. footer).
+   */
+  variant?: "dark" | "light";
 };
 
 /** Full PDFsMint lockup: symbol + two-tone wordmark ("PDFs" + highlighted "Mint"). */
@@ -99,15 +104,20 @@ export function BrandLogo({
   textClassName = "text-lg",
   idSuffix = "brand",
   asLink = true,
+  variant = "dark",
 }: BrandLogoProps) {
+  const pdfClass = variant === "light" ? "text-white" : "text-neutral-900";
+  const mintClass =
+    variant === "light" ? "text-primary-200" : "text-primary-700";
+
   const inner = (
     <>
       <LogoMark className={markClassName} idSuffix={idSuffix} />
       <span
         className={`font-heading font-bold tracking-tight ${textClassName}`}
       >
-        <span className="text-neutral-900">PDFs</span>
-        <span className="text-primary-700">Mint</span>
+        <span className={pdfClass}>PDFs</span>
+        <span className={mintClass}>Mint</span>
       </span>
     </>
   );
@@ -120,7 +130,7 @@ export function BrandLogo({
     <Link
       href="/"
       aria-label="PDFsMint home"
-      className={`group inline-flex items-center gap-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${className}`}
+      className={`group inline-flex max-w-full items-center gap-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${className}`}
     >
       {inner}
     </Link>

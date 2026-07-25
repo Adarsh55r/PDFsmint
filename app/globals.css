@@ -5,9 +5,9 @@
 @layer base {
   html {
     @apply scroll-smooth;
-    /* Keep text at a consistent size across browsers and stop mobile browsers
-       (Safari/Chrome on iOS/Android) from auto-inflating or shrinking text,
-       which is a common cause of "looks different on each browser". */
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-size-adjust: 100%;
@@ -15,9 +15,12 @@
 
   body {
     @apply bg-neutral-50 text-neutral-800;
-    /* Prevent any stray element from causing horizontal scroll / cutoff on
-       small screens. `clip` (not `hidden`) keeps the sticky header working. */
-    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    /* Safe-area padding for notched phones (iPhone, etc.) */
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
   }
 
   /* Media never overflows its container, keeping layouts screen-independent. */
@@ -49,7 +52,7 @@
 
 @layer components {
   .surface-card {
-    @apply rounded-xl border border-neutral-200/80 bg-white shadow-soft transition-shadow hover:shadow-soft-md;
+    @apply rounded-xl border border-neutral-200/80 bg-white shadow-soft transition-all duration-300;
   }
 
   .text-muted {
@@ -58,6 +61,12 @@
 
   .link-subtle {
     @apply text-neutral-600 transition-colors hover:text-primary-700;
+  }
+
+  /* Keep long filenames / URLs from forcing horizontal overflow on small screens */
+  .break-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
 

@@ -70,7 +70,7 @@ export function ToolPageTemplate({
         </header>
 
         <section aria-label="Tool" className="mb-16">
-          <div className="surface-card p-6 md:p-8">{children}</div>
+          <div className="surface-card min-w-0 p-6 md:p-8">{children}</div>
         </section>
 
         <HowItWorksSection steps={howItWorks} />

@@ -13,6 +13,7 @@ export const siteConfig = {
   ogImage: "/og-images/default.svg",
   twitterHandle: "@pdfsmint",
   locale: "en_US",
+  contactEmail: "pdfsmint@gmail.com",
 } as const;
 
 function resolveAbsoluteUrl(path: string): string {

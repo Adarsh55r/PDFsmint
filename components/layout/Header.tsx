@@ -6,8 +6,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-neutral-200/80 bg-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-white/80">
       <Container>
-        <div className="flex h-16 items-center justify-between gap-4">
-          <HeaderLogo />
+        <div className="flex h-16 min-w-0 items-center justify-between gap-2 sm:gap-4">
+          <div className="min-w-0 shrink">
+            <HeaderLogo />
+          </div>
           <DesktopNav />
           <MobileMenu />
         </div>

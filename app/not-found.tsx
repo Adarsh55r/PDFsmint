@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, FileQuestion } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
-import { getToolIcon } from "@/lib/tool-icons";
+import { getToolTheme } from "@/lib/tool-icons";
 import { popularTools } from "@/lib/navigation";
 
 const featuredTools = popularTools.slice(0, 6);
@@ -27,14 +27,16 @@ export default function NotFound() {
 
         <ul className="grid gap-3 text-left sm:grid-cols-2">
           {featuredTools.map((tool) => {
-            const Icon = getToolIcon(tool.href);
+            const { icon: Icon, iconBg, iconText } = getToolTheme(tool.href);
             return (
               <li key={tool.href}>
                 <Link
                   href={tool.href}
                   className="surface-card group flex items-center gap-3 p-4"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
+                  <span
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${iconBg} ${iconText}`}
+                  >
                     <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />
                   </span>
                   <span className="min-w-0 flex-1">

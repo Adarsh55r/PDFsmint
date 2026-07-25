@@ -8,6 +8,7 @@ export type SitemapRoute = {
 };
 
 const marketingRoutes: SitemapRoute[] = [
+  { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
   { path: "/privacy-policy", priority: 0.5, changeFrequency: "yearly" },

@@ -54,6 +54,11 @@ export const toolCategories: ToolCategory[] = [
         description: "Reorder, rotate, and remove pages",
       },
       {
+        href: "/tools/n-up-pdf",
+        label: "N-Up PDF",
+        description: "Put multiple pages on one sheet",
+      },
+      {
         href: "/tools/watermark-pdf",
         label: "Watermark PDF",
         description: "Stamp text or image over pages",
@@ -94,7 +99,7 @@ export const toolCategories: ToolCategory[] = [
 
 export const mainNavLinks = [
   { href: "/", label: "Home" },
-  { href: "/blog/why-client-side-pdf-tools", label: "Blog" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
 ] as const;
 
@@ -107,6 +112,7 @@ export const popularTools: NavLink[] = Array.from(
 
 export const companyLinks: NavLink[] = [
   { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms" },

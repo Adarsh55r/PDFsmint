@@ -26,6 +26,8 @@ export const metadata: Metadata = generateRootMetadata();
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
   themeColor: "#ffffff",
 };
 
@@ -43,8 +45,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="flex min-h-screen flex-col font-sans text-neutral-800 antialiased">
+    <html
+      lang="en"
+      className={`${inter.variable} ${poppins.variable} overflow-x-hidden`}
+    >
+      <body className="flex min-h-screen min-w-0 flex-col overflow-x-hidden font-sans text-neutral-800 antialiased">
         <JsonLd data={websiteJsonLd} />
         <a
           href="#main-content"
@@ -53,7 +58,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        <main id="main-content" className="flex-1">
+        <main id="main-content" className="min-w-0 flex-1 overflow-x-hidden">
           {children}
         </main>
         <Footer />
