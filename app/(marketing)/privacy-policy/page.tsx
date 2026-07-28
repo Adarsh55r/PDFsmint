@@ -74,16 +74,21 @@ export default function PrivacyPolicyPage() {
             Cookies and analytics
           </h2>
           <p>
-            We may use privacy-respecting analytics and cookies to measure traffic
-            and improve the experience. Cookies are small text files stored by
-            your browser. You can block or delete cookies through your browser
-            settings at any time; the core tools will continue to function without
-            them.
-          </p>
-          <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
-            Note for the site owner: confirm exactly which analytics provider
-            (e.g. Google Analytics, Plausible) you use and update this section
-            accordingly before publishing.
+            We use{" "}
+            <a
+              href="https://vercel.com/docs/analytics/privacy-policy"
+              className="font-medium text-primary-800 underline-offset-2 hover:underline"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Vercel Web Analytics
+            </a>{" "}
+            to measure aggregated page views and traffic. It is designed to be
+            privacy-friendly and does not use cookies for visitor tracking. If we
+            add advertising cookies later (for example Google AdSense), those are
+            described in the Advertising section below. You can block or delete
+            cookies through your browser settings at any time; the core tools will
+            continue to function without them.
           </p>
         </section>
 

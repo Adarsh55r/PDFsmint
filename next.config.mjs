@@ -25,8 +25,10 @@ const contentSecurityPolicy = [
   // 'unsafe-inline' -> our JSON-LD <script> tags + Next.js inline bootstrap.
   // 'wasm-unsafe-eval' -> pdf.js WebAssembly image decoders.
   // 'unsafe-eval' -> DEV ONLY, required by React Fast Refresh.
+  // va.vercel-scripts.com -> @vercel/analytics debug script (local) + CDN fallback.
+  // Production analytics script is same-origin (/_vercel/insights/script.js).
   // AdSense: append the Google script domains here.
-  `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://va.vercel-scripts.com${isDev ? " 'unsafe-eval'" : ""}`,
   // Tailwind / Next inject inline styles.
   `style-src 'self' 'unsafe-inline'`,
   // data: + blob: -> canvas-generated image previews and downloads.
@@ -34,10 +36,11 @@ const contentSecurityPolicy = [
   `img-src 'self' data: blob:`,
   // next/font self-hosts fonts under /_next; data: as a safe fallback.
   `font-src 'self' data:`,
-  // Same-origin only: pdf.js fetches its WASM decoders from our own origin.
+  // Same-origin: pdf.js WASM + Vercel Web Analytics events (/_vercel/insights).
+  // va.vercel-scripts.com: Analytics debug/beacon in development.
   // blob:/data: allow reading generated assets back.
   // AdSense: append the Google ad-serving domains here.
-  `connect-src 'self' blob: data:`,
+  `connect-src 'self' blob: data: https://va.vercel-scripts.com`,
   // pdf.js Web Worker is served from our origin (/pdf.worker.min.mjs) and may
   // also spin up blob: workers.
   `worker-src 'self' blob:`,
