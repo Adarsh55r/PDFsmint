@@ -38,7 +38,10 @@ async function makeSourcePdf(pageCount: number): Promise<File> {
   }
 
   const bytes = await doc.save();
-  return new File([bytes], "test-10-pages.pdf", { type: "application/pdf" });
+  // Copy into a fresh ArrayBuffer-backed Uint8Array so File/BlobPart typings accept it.
+  return new File([new Uint8Array(bytes)], "test-10-pages.pdf", {
+    type: "application/pdf",
+  });
 }
 
 async function verifyLayout(
