@@ -9,7 +9,11 @@ export const siteConfig = {
   titleSuffix: `${siteName} – ${siteTagline}`,
   description:
     "Free, private PDF and image utilities that run entirely in your browser. Compress, merge, and convert files — no uploads required.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.NODE_ENV === "production"
+      ? "https://www.pdfsmint.com"
+      : "http://localhost:3000"),
   ogImage: "/og-images/default.svg",
   twitterHandle: "@pdfsmint",
   locale: "en_US",

@@ -1,20 +1,9 @@
 import Link from "next/link";
-import { Code2, Globe, Share2 } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { BrandLogo } from "@/components/layout/Logo";
-import {
-  companyLinks,
-  popularTools,
-  socialLinks,
-} from "@/lib/navigation";
+import { companyLinks, popularTools } from "@/lib/navigation";
 import { siteConfig } from "@/lib/seo-config";
-
-const socialIconMap = {
-  twitter: Share2,
-  github: Code2,
-  linkedin: Globe,
-} as const;
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -95,25 +84,7 @@ export function Footer() {
             >
               {siteConfig.contactEmail}
             </a>
-            <div className="mt-4 flex items-center gap-3">
-              {socialLinks.map((social) => {
-                const Icon = socialIconMap[social.icon];
-
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-primary-700/80 bg-primary-800/60 text-primary-100 transition-all hover:border-primary-400/60 hover:bg-primary-700 hover:text-white"
-                  >
-                    <Icon className="h-4 w-4" strokeWidth={1.75} />
-                  </a>
-                );
-              })}
-            </div>
-            <p className="mt-4 text-xs leading-relaxed text-primary-200/70">
-              Social links are placeholders — update before launch.
-            </p>
+            {/* TODO: add social links here once accounts are created */}
           </div>
         </div>
 

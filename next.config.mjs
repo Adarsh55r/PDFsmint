@@ -103,7 +103,7 @@ export default function config(phase) {
         "",
         "   Set it in your Vercel project:",
         "   Settings → Environment Variables → NEXT_PUBLIC_SITE_URL",
-        "   e.g. https://your-project.vercel.app  (or your custom domain later)",
+        "   e.g. https://www.pdfsmint.com",
         "",
       ].join("\n"),
     );
