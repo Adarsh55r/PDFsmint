@@ -11,6 +11,7 @@ import {
   LayoutGrid,
   Maximize2,
   Minimize2,
+  PenLine,
   Scissors,
   Stamp,
 } from "lucide-react";
@@ -103,6 +104,13 @@ export const toolThemeMap: Record<string, ToolTheme> = {
     iconBg: "bg-rose-100",
     iconText: "text-rose-700",
     iconBgHover: "group-hover:bg-rose-200",
+    accentRing: GREEN_CARD_HOVER,
+  },
+  "/tools/sign-pdf": {
+    icon: PenLine,
+    iconBg: "bg-slate-100",
+    iconText: "text-slate-700",
+    iconBgHover: "group-hover:bg-slate-200",
     accentRing: GREEN_CARD_HOVER,
   },
   "/tools/resize-image": {

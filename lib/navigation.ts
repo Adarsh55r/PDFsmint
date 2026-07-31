@@ -63,6 +63,11 @@ export const toolCategories: ToolCategory[] = [
         label: "Watermark PDF",
         description: "Stamp text or image over pages",
       },
+      {
+        href: "/tools/sign-pdf",
+        label: "Sign PDF",
+        description: "Draw, type, or upload a signature",
+      },
     ],
   },
   {
