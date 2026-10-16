@@ -87,16 +87,7 @@ export function Footer() {
             {/* TODO: add social links here once accounts are created */}
           </div>
         </div>
-
-        <div
-          id="footer-ad-slot"
-          className="mt-10 flex min-h-[90px] items-center justify-center rounded-xl border border-dashed border-primary-600/50 bg-primary-950/35 px-4 py-6 text-center"
-          aria-label="Advertisement placeholder"
-        >
-          <p className="text-xs text-primary-200/75">
-            Ad placement reserved — Google AdSense slot
-          </p>
-        </div>
+        {/* AdSense: add the footer ad unit here once ads are live (see CSP notes in next.config.mjs). */}
       </Container>
 
       <div className="relative border-t border-primary-800/80 bg-primary-950/50">

@@ -42,7 +42,7 @@ Status key: ✅ fixed in this change · ⚠️ open · ℹ️ OK as is
 12. ✅ Blog posts had no contextual tool links (plain-text blocks only). Added `toolLink` and `table` block types, and related posts now match by shared tools.
 13. ⚠️ **FAQPage schema** is present on the homepage and every tool page. It matches visible content, so it isn't spam, but Google shows FAQ rich results only for well-known government and health sites (change announced August 2023). Keep it (harmless and descriptive), but don't expect FAQ snippets.
 14. ⚠️ **The compress preset labels claim savings** ("Up to 40% / Around 20% / Around 10% smaller") that weren't measured, and the 2026-02-03 blog post repeats them. Real results vary from 0% to over 80% depending on the file. Replace them with a qualitative description, or run a documented test set and publish those results.
-15. ⚠️ **A visible "Ad placement reserved — Google AdSense slot" box** appears in the footer of every page. It looks unfinished to users; remove it until ads are live (business decision).
+15. ✅ **A visible "Ad placement reserved — Google AdSense slot" box** appeared in the footer of every page. Removed; re-add a real ad unit when AdSense is live.
 16. ⚠️ **`theme-color`, `apple-touch-icon` and the Organization logo use an SVG.** iOS ignores SVG apple-touch-icons. Add 180×180 and 512×512 PNG icons.
 17. ⚠️ **`robots.txt` contains `Host:`** (only Yandex reads it) **and `Disallow: /api/`** (no API exists). Both are harmless, so they're left as is.
 
