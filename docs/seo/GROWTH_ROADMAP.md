@@ -33,7 +33,7 @@ That isn't a forecast; there's no data yet to forecast from. It's why the plan b
 | 1 | **Deploy, then verify production** (TECHNICAL_AUDIT.md checklist) | H | H | XS | L | Owner |
 | 2 | **Set up GSC + Bing Webmaster Tools, submit the sitemap**, request indexing for the homepage, both hubs, and the top 5 tools | **H** | H | XS | L | Owner |
 | 3 | Record the real baseline in BASELINE.md | H (enables everything else) | H | XS | L | Owner |
-| 4 | Remove the visible "Ad placement reserved" box until ads are live | M | M | XS | L | Owner decision |
+| 4 | ✅ Removed the visible "Ad placement reserved" box | M | M | XS | L | Done |
 | 5 | "Get a PDF under a size limit" guide | M–H | M | S | L | Content |
 | 6 | Edit PDF copy: say plainly that it edits pages, not text; add rotate and delete sections | M | M | S | L | Content |
 | 7 | PNG app icons (180, 512) and a PNG Organization logo | L | H | XS | L | Eng |
