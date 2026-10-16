@@ -6,12 +6,15 @@ export type NavLink = {
 
 export type ToolCategory = {
   label: string;
+  /** Category hub page listing these tools with formats and limits. */
+  href: string;
   links: NavLink[];
 };
 
 export const toolCategories: ToolCategory[] = [
   {
     label: "PDF Tools",
+    href: "/pdf-tools",
     links: [
       {
         href: "/tools/compress-pdf",
@@ -72,6 +75,7 @@ export const toolCategories: ToolCategory[] = [
   },
   {
     label: "Image Tools",
+    href: "/image-tools",
     links: [
       {
         href: "/tools/resize-image",
@@ -116,6 +120,8 @@ export const popularTools: NavLink[] = Array.from(
 );
 
 export const companyLinks: NavLink[] = [
+  { href: "/pdf-tools", label: "All PDF Tools" },
+  { href: "/image-tools", label: "All Image Tools" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },

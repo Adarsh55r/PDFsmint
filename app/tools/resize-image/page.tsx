@@ -4,10 +4,10 @@ import { Download, Ruler, Upload } from "lucide-react";
 import { ResizeImageWidget } from "./ResizeImageWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/resize-image";
-const metaTitle = `Resize Image Online Free – Set Exact Width & Height | ${siteConfig.name}`;
+const metaTitle = `Resize Image Online Free – Set Exact Width & Height`;
 const metaDescription =
   "Change any image's dimensions by pixels in your browser. Lock the aspect ratio, export JPG/PNG/WebP, and keep your photos private.";
 
@@ -48,7 +48,7 @@ export default function ResizeImagePage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Image Tools", href: "/" },
+          { label: "Image Tools", href: "/image-tools" },
           { label: "Resize Image" },
         ]}
         h1="Resize Image — Exact Pixel Dimensions"

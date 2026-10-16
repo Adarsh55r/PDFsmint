@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Lock, Zap } from "lucide-react";
 
 import { HomeTrustStats } from "@/components/home/HomeTrustStats";
@@ -10,7 +11,9 @@ import { ToolFaqSection } from "@/components/tools/ToolFaqSection";
 import { toolCategories } from "@/lib/navigation";
 import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
 
-const metaTitle = "Free Online PDF Tools — Compress, Merge & Convert";
+const metaTitle = {
+  absolute: "PDFsMint – Free PDF & Image Tools That Run in Your Browser",
+};
 const metaDescription =
   "Free online PDF & image tools that run in your browser. Compress, merge, split & convert — no signup, files never uploaded.";
 
@@ -62,7 +65,7 @@ export default function HomePage() {
               100% private — files stay on your device
             </p>
             <h1 className="mb-5 text-4xl font-bold leading-tight tracking-tight text-neutral-900 md:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-              Free Online PDF &amp; Image Tools — No Signup, No Limits, No
+              Free Online PDF &amp; Image Tools — No Signup, No Uploads, No
               Watermarks
             </h1>
             <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
@@ -118,7 +121,12 @@ export default function HomePage() {
             >
               <h3 className="mb-6 flex items-center gap-3 text-lg font-semibold text-neutral-900">
                 <span className="h-px flex-1 bg-neutral-200" aria-hidden />
-                {category.label}
+                <Link
+                  href={category.href}
+                  className="transition-colors hover:text-primary-800"
+                >
+                  {category.label}
+                </Link>
                 <span className="h-px flex-1 bg-neutral-200" aria-hidden />
               </h3>
               <ul className="grid list-none gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">

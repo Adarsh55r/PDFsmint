@@ -4,10 +4,10 @@ import { Download, SlidersHorizontal, Upload } from "lucide-react";
 import { CompressImageWidget } from "./CompressImageWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/compress-image";
-const metaTitle = `Compress Image Online Free – Shrink JPG & PNG | ${siteConfig.name}`;
+const metaTitle = `Compress Image Online Free – Shrink JPG & PNG`;
 const metaDescription =
   "Reduce photo file size in your browser with an adjustable quality slider. See before-and-after sizes instantly — private and free.";
 
@@ -17,7 +17,7 @@ const faqs = [
   {
     question: "How much smaller will my image get?",
     answer:
-      "It depends on the photo and the quality you pick. Detailed photographs often drop 60–80% in size at moderate quality with little visible difference.",
+      "It depends on the image and the quality you pick. Photos saved at a high quality setting usually have the most room to shrink; images that are already heavily compressed may change very little. The tool shows the exact before-and-after size so you can adjust the slider and try again.",
   },
   {
     question: "What does the quality slider actually do?",
@@ -48,7 +48,7 @@ export default function CompressImagePage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Image Tools", href: "/" },
+          { label: "Image Tools", href: "/image-tools" },
           { label: "Compress Image" },
         ]}
         h1="Compress Image — Smaller Files, Same Look"

@@ -44,12 +44,12 @@
   </text>
 
   <!-- Value props -->
-  <text x="474" y="430" class="body" font-weight="600" font-size="30" fill="#0d9488">
-    100% in your browser  �  No uploads  �  No sign-up
+  <text x="474" y="425" class="body" font-weight="600" font-size="26" fill="#0d9488">
+    100% in your browser &#183; No uploads &#183; No sign-up
   </text>
 
   <!-- Footer strip -->
-  <text x="150" y="560" class="body" font-size="28" fill="#94a3b8">
-    Compress � Merge � Split � Convert � Edit  your files never leave your device
+  <text x="150" y="555" class="body" font-size="24" fill="#94a3b8">
+    Compress &#183; Merge &#183; Split &#183; Convert &#183; Edit &#8212; your files never leave your device
   </text>
 </svg>

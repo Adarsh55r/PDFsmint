@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/seo-config";
 // Honest, verifiable trust signals — no fabricated usage numbers or ratings.
 // Every value here is a fact about how the product works.
 const signals = [
-  { value: "100%", label: "Free — no limits or paywalls" },
+  { value: "100%", label: "Free — no paywalls or daily caps" },
   { value: "0", label: "Files uploaded to our servers" },
   { value: "0", label: "Accounts or sign-ups required" },
   { value: `${popularTools.length}`, label: "Tools, all in your browser" },

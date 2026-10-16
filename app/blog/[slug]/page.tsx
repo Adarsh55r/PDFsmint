@@ -38,7 +38,16 @@ export function generateMetadata({ params }: BlogPostPageProps): Metadata {
     );
   }
 
-  return buildMetadata(post.title, post.description, `/blog/${slug}`);
+  const metadata = buildMetadata(post.title, post.description, `/blog/${slug}`);
+  return {
+    ...metadata,
+    openGraph: {
+      ...metadata.openGraph,
+      type: "article",
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt ?? post.publishedAt,
+    },
+  };
 }
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
@@ -66,6 +75,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           description: post.description,
           path: `/blog/${post.slug}`,
           publishedAt: post.publishedAt,
+          updatedAt: post.updatedAt,
         })}
       />
       <Breadcrumbs
@@ -84,7 +94,15 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           {post.title}
         </h1>
         <p className="text-sm text-neutral-500">
-          {formatDate(post.publishedAt)} &middot; {getReadingMinutes(post)} min read
+          {post.updatedAt ? (
+            <>
+              Updated {formatDate(post.updatedAt)} &middot; First published{" "}
+              {formatDate(post.publishedAt)}
+            </>
+          ) : (
+            formatDate(post.publishedAt)
+          )}{" "}
+          &middot; {getReadingMinutes(post)} min read
         </p>
       </header>
 

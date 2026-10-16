@@ -4,10 +4,10 @@ import { Download, LayoutGrid, Upload } from "lucide-react";
 import { PdfLayoutWidget } from "./PdfLayoutWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/n-up-pdf";
-const metaTitle = `N-Up PDF Layout – 2-Up, 4-Up & More Free Online | ${siteConfig.name}`;
+const metaTitle = `N-Up PDF Layout – 2-Up, 4-Up & More Free Online`;
 const metaDescription =
   "Combine multiple PDF pages on one sheet (2-up, 4-up, 6-up, 9-up). Print-friendly layouts in your browser — free and private.";
 
@@ -52,7 +52,7 @@ export default function NUpPdfPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "N-Up PDF" },
         ]}
         h1="N-Up PDF — Combine Multiple Pages Per Sheet"

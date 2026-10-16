@@ -82,9 +82,14 @@ export function ToolsMenu() {
               >
                 <div className="mb-3 flex items-center gap-2">
                   {categoryIcons[category.label]}
-                  <p className="text-xs font-semibold uppercase tracking-wider text-neutral-600">
+                  <Link
+                    href={category.href}
+                    onClick={() => setIsOpen(false)}
+                    tabIndex={isOpen ? 0 : -1}
+                    className="text-xs font-semibold uppercase tracking-wider text-neutral-600 hover:text-primary-800"
+                  >
                     {category.label}
-                  </p>
+                  </Link>
                 </div>
                 <ul className="space-y-1">
                   {category.links.map((tool) => {

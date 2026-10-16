@@ -4,10 +4,10 @@ import { Download, SlidersHorizontal, Upload } from "lucide-react";
 import { SplitPdfWidget } from "./SplitPdfWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/split-pdf";
-const metaTitle = `Split PDF Online Free – Extract Pages & Ranges | ${siteConfig.name}`;
+const metaTitle = `Split PDF Online Free – Extract Pages & Ranges`;
 const metaDescription =
   "Break a PDF into single pages or custom ranges in your browser. Download separately or as a ZIP — private, free, and instant.";
 
@@ -48,7 +48,7 @@ export default function SplitPdfPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "Split PDF" },
         ]}
         h1="Split PDF — Extract Pages Your Way"

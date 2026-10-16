@@ -4,10 +4,10 @@ import { Download, LayoutGrid, Upload } from "lucide-react";
 import { JpgToPdfWidget } from "./JpgToPdfWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/jpg-to-pdf";
-const metaTitle = `JPG to PDF Converter Free – Images to PDF Online | ${siteConfig.name}`;
+const metaTitle = `JPG to PDF Converter Free – Images to PDF Online`;
 const metaDescription =
   "Turn JPG and PNG images into a single PDF in your browser. Reorder pages, pick A4 or fit-to-image, and keep everything private.";
 
@@ -48,7 +48,7 @@ export default function JpgToPdfPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Image Tools", href: "/" },
+          { label: "Image Tools", href: "/image-tools" },
           { label: "JPG to PDF" },
         ]}
         h1="JPG to PDF — Turn Images into a Document"

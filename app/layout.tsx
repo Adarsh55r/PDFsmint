@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { JsonLd } from "@/components/seo/JsonLd";
+import { JsonLd, organizationJsonLd } from "@/components/seo/JsonLd";
 import { generateRootMetadata, siteConfig } from "@/lib/seo-config";
 
 import "./globals.css";
@@ -35,9 +35,12 @@ export const viewport: Viewport = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${siteConfig.url}/#website`,
   name: siteConfig.name,
   description: siteConfig.description,
   url: siteConfig.url,
+  inLanguage: "en",
+  publisher: { "@id": `${siteConfig.url}/#organization` },
 };
 
 export default function RootLayout({
@@ -51,7 +54,7 @@ export default function RootLayout({
       className={`${inter.variable} ${poppins.variable} overflow-x-hidden`}
     >
       <body className="flex min-h-screen min-w-0 flex-col overflow-x-hidden font-sans text-neutral-800 antialiased">
-        <JsonLd data={websiteJsonLd} />
+        <JsonLd data={[websiteJsonLd, organizationJsonLd()]} />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-neutral-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:shadow-soft-lg focus:outline-none"

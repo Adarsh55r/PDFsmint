@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Download, Minimize2, Upload } from "lucide-react";
 
 import { CompressPdfWidget } from "./CompressPdfWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/compress-pdf";
-const metaTitle = `Compress PDF Online Free – No Upload, No Signup | ${siteConfig.name}`;
+const metaTitle = `Compress PDF Online Free – No Upload, No Signup`;
 const metaDescription =
   "Shrink PDF file size instantly in your browser. Free, private, no signup — files never leave your device.";
 
@@ -31,12 +32,22 @@ const faqs = [
   {
     question: "Will compressing reduce the quality of my PDF?",
     answer:
-      "We optimize pages for a balance of size and readability. Image-heavy and scanned PDFs usually shrink significantly. Text-only documents may already be optimized and see smaller savings.",
+      "It depends on the file. The tool first tries a lossless re-pack that keeps text and vector graphics exactly as they are. Only when re-rendering the pages as JPEG images saves meaningfully more space does it use that result instead — and the Low, Standard, and Extreme presets control how sharp those images stay.",
+  },
+  {
+    question: "Will I still be able to select and search text after compressing?",
+    answer:
+      "If the lossless method was used, yes. If the pages were re-rendered as images to reach a smaller size, text is no longer selectable or searchable and links or form fields are removed. The result screen tells you when this happened, so you can keep the original if you need those features.",
+  },
+  {
+    question: "Why did my PDF barely get smaller?",
+    answer:
+      "PDFs that are mostly text are already compact, so there is little to remove. If the output would be larger than your original, the tool keeps your original file rather than making it bigger. Scanned and photo-heavy PDFs usually shrink the most.",
   },
   {
     question: "Is there a file size limit?",
     answer:
-      "You can compress PDFs up to 50 MB. Larger files may exceed browser memory limits — if that happens, try closing other tabs or splitting the document first.",
+      "You can compress PDFs up to 50 MB and 150 pages. Larger files may exceed browser memory limits — if that happens, split the document into smaller parts first, compress each part, and merge them again.",
   },
   {
     question: "Does it work on mobile?",
@@ -52,7 +63,7 @@ export default function CompressPdfPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "Compress PDF" },
         ]}
         h1="Compress PDF Online — Free & Instant"
@@ -117,36 +128,76 @@ function CompressPdfSeoContent() {
   return (
     <div className="space-y-4 text-neutral-600 leading-relaxed">
       <h2 className="text-xl font-semibold text-neutral-900">
-        Free online PDF compression that respects your privacy
+        How to make a PDF smaller
       </h2>
       <p>
-        Large PDF files are difficult to email, slow to upload, and frustrating
-        to share. Our compress PDF tool reduces file size directly in your
-        browser — no account, no installation, and no data sent to a remote
-        server. That makes it a practical choice for contracts, invoices,
-        scanned documents, and school assignments where confidentiality matters.
+        Upload the PDF, choose a preset (Low, Standard, or Extreme), and
+        download the result. Everything happens in your browser: the file is
+        read from your device, compressed in memory, and handed back as a
+        download without being sent to a server.
       </p>
+      <h3 className="text-lg font-semibold text-neutral-900">
+        What the tool actually does to your file
+      </h3>
       <p>
-        When you compress a PDF here, the file is processed locally on your
-        device. Pages are analyzed and optimized to remove unnecessary bulk
-        while keeping text and images readable. Image-heavy PDFs — such as
-        scanned receipts, brochures, or photo albums — often see the biggest
-        reductions. Text-based documents may already be efficiently encoded; in
-        those cases the tool still returns the best optimized version available.
+        PDFsMint tries two methods and keeps the smallest sensible result. The
+        first is a lossless re-pack of the document&rsquo;s internal structure,
+        which never changes how a page looks. The second re-renders each page
+        as a JPEG image at roughly 108&ndash;144 DPI depending on the preset.
+        The image version is only used when it is at least 5% smaller than the
+        lossless one, and the original is kept if neither is smaller.
       </p>
+      <ul className="list-disc space-y-1 pl-5">
+        <li>
+          <strong>Low</strong> — sharpest output, smallest savings. Best for
+          documents you will print.
+        </li>
+        <li>
+          <strong>Standard</strong> — a balance of size and readability for
+          email and uploads.
+        </li>
+        <li>
+          <strong>Extreme</strong> — the smallest files, with visibly softer
+          images. Good for meeting a strict upload limit.
+        </li>
+      </ul>
+      <h3 className="text-lg font-semibold text-neutral-900">
+        Which PDFs shrink the most
+      </h3>
       <p>
-        Common reasons people compress PDFs include meeting email attachment
-        limits, saving storage space on a phone or laptop, speeding up uploads to
-        client portals, and preparing files for web publishing. Because
-        everything runs client-side, you can use the tool on a work machine
-        without worrying about confidential material passing through third-party
-        infrastructure.
+        Scanned documents, phone photos of paperwork, brochures, and
+        image-heavy reports usually see the biggest reductions. PDFs exported
+        from a word processor that contain mostly text are already compact, so
+        savings are small and the tool may return the original unchanged.
       </p>
+      <h3 className="text-lg font-semibold text-neutral-900">
+        If your file is still too large for an upload limit
+      </h3>
+      <ol className="list-decimal space-y-1 pl-5">
+        <li>Try the Extreme preset.</li>
+        <li>
+          Remove pages you do not need with{" "}
+          <Link href="/tools/edit-pdf" className="text-primary-700 underline">
+            Edit PDF
+          </Link>{" "}
+          or{" "}
+          <Link href="/tools/split-pdf" className="text-primary-700 underline">
+            Split PDF
+          </Link>
+          , then compress again.
+        </li>
+        <li>
+          For a portal that accepts several files, split the document into
+          parts and upload each one separately.
+        </li>
+      </ol>
+      <h3 className="text-lg font-semibold text-neutral-900">Limitations</h3>
       <p>
-        Simply upload your file, wait a few seconds while compression completes,
-        and download the result. If you need to process another document, click
-        &ldquo;Compress another file&rdquo; to start over. For related tasks,
-        explore our merge, split, and conversion tools linked below.
+        Password-protected PDFs must be unlocked before compressing. When the
+        image method is used, text stops being selectable or searchable and
+        links, bookmarks, and form fields are not kept. Files over 50 MB or 150
+        pages are not supported, because processing happens within your
+        browser&rsquo;s memory.
       </p>
     </div>
   );

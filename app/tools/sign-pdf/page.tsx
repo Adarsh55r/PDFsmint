@@ -7,7 +7,7 @@ import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
 import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
 
 const path = "/tools/sign-pdf";
-const metaTitle = `Sign PDF Free Online – Draw, Type or Upload Signature | ${siteConfig.name}`;
+const metaTitle = `Sign PDF Free Online – Draw, Type or Upload Signature`;
 const metaDescription =
   "Add a handwritten, typed, or uploaded signature to any PDF page in your browser. Drag, resize, and download — no account, nothing uploaded.";
 
@@ -52,7 +52,7 @@ export default function SignPdfPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "Sign PDF" },
         ]}
         h1="Sign PDF — Draw, Type, or Upload a Signature"

@@ -4,10 +4,10 @@ import { Download, Settings2, Upload } from "lucide-react";
 import { PdfToJpgWidget } from "./PdfToJpgWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/pdf-to-jpg";
-const metaTitle = `PDF to JPG Free – Convert PDF Pages to Images | ${siteConfig.name}`;
+const metaTitle = `PDF to JPG Free – Convert PDF Pages to Images`;
 const metaDescription =
   "Export every page of a PDF as a high-quality JPG or PNG in your browser. Preview thumbnails, download all as a ZIP — no upload required.";
 
@@ -48,7 +48,7 @@ export default function PdfToJpgPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "PDF to JPG" },
         ]}
         h1="PDF to JPG — Save Pages as Images"
