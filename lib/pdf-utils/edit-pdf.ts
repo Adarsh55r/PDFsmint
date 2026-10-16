@@ -1,6 +1,5 @@
 "use client";
 
-import { degrees, PDFDocument } from "pdf-lib";
 
 import { ToolError } from "@/lib/tool-error";
 import type { ProgressCallback } from "@/lib/processing";
@@ -27,7 +26,10 @@ export type EditedPage = {
 const MAX_PAGES = 150;
 
 async function loadPdfJs() {
-  const pdfjs = await import("pdfjs-dist");
+  // Legacy build: it bundles polyfills (e.g. Map.prototype.getOrInsertComputed)
+  // that the modern build assumes. Without them rendering fails on browsers
+  // that don't ship those built-ins yet. Worker in /public must match.
+  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
   pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
   return pdfjs;
 }
@@ -116,6 +118,8 @@ export async function saveEditedPdf(
   pages: EditedPage[],
   onProgress?: ProgressCallback,
 ): Promise<Blob> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { degrees, PDFDocument } = await import("pdf-lib");
   if (pages.length === 0) {
     throw new ToolError(
       "EMPTY_INPUT",

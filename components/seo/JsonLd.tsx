@@ -8,7 +8,10 @@ export function JsonLd({ data }: JsonLdProps) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      // Escape "<" so a value containing "</script>" can't end the tag early.
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data).replace(/</g, "\\u003c"),
+      }}
     />
   );
 }
@@ -26,11 +29,11 @@ export function softwareApplicationJsonLd({
 }: SoftwareApplicationSchemaInput): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": "WebApplication",
     name,
     description,
     url: resolveAbsoluteUrl(path),
-    applicationCategory: "Utility",
+    applicationCategory: "UtilitiesApplication",
     operatingSystem: "Any",
     browserRequirements: "Requires a modern web browser with JavaScript enabled",
     offers: {
@@ -38,11 +41,22 @@ export function softwareApplicationJsonLd({
       price: "0",
       priceCurrency: "USD",
     },
-    provider: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: { "@id": organizationId },
+  };
+}
+
+/** Stable @id so every page's schema refers to the same Organization node. */
+export const organizationId = `${siteConfig.url}/#organization`;
+
+export function organizationJsonLd(): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": organizationId,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: resolveAbsoluteUrl("/icons/favicon.svg"),
+    email: siteConfig.contactEmail,
   };
 }
 
@@ -109,16 +123,9 @@ export function articleJsonLd({
     url: resolveAbsoluteUrl(path),
     datePublished: publishedAt,
     dateModified: updatedAt ?? publishedAt,
-    author: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    image: resolveAbsoluteUrl(siteConfig.ogImage),
+    author: { "@id": organizationId },
+    publisher: { "@id": organizationId },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": resolveAbsoluteUrl(path),

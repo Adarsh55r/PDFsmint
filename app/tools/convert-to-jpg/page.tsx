@@ -4,10 +4,10 @@ import { Download, RefreshCcw, Upload } from "lucide-react";
 import { ConvertToJpgWidget } from "./ConvertToJpgWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/convert-to-jpg";
-const metaTitle = `Convert to JPG Free – PNG, WebP & GIF to JPG | ${siteConfig.name}`;
+const metaTitle = `Convert to JPG Free – PNG, WebP & GIF to JPG`;
 const metaDescription =
   "Convert PNG, WebP, GIF, or BMP images to JPG in your browser. Transparency is flattened to white, quality is adjustable — 100% private.";
 
@@ -48,7 +48,7 @@ export default function ConvertToJpgPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Image Tools", href: "/" },
+          { label: "Image Tools", href: "/image-tools" },
           { label: "Convert to JPG" },
         ]}
         h1="Convert to JPG — PNG, WebP, GIF & More"

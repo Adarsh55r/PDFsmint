@@ -4,10 +4,10 @@ import { Download, FileText, Upload } from "lucide-react";
 import { WordToPdfWidget } from "./WordToPdfWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/word-to-pdf";
-const metaTitle = `Word to PDF Free – Convert DOCX to PDF Online | ${siteConfig.name}`;
+const metaTitle = `Word to PDF Free – Convert DOCX to PDF Online`;
 const metaDescription =
   "Convert Word (.docx) documents to PDF in your browser. Keeps headings, lists, tables, and images — private, free, and no signup.";
 
@@ -30,6 +30,11 @@ const faqs = [
       "Those Word-specific features aren't reliably reproduced in a browser conversion, so they may be dropped. The main body content is the focus.",
   },
   {
+    question: "Can I select or search the text in the converted PDF?",
+    answer:
+      "Usually not. To keep the layout faithful in a browser, each page is captured as an image and placed into the PDF, so the text looks right but isn't selectable or searchable. If a page can't be captured, the tool falls back to a plain-text PDF with simplified formatting. If you need selectable text, export to PDF from Word, Google Docs, or LibreOffice instead.",
+  },
+  {
     question: "Will my images be included?",
     answer:
       "Yes. Pictures embedded in the document are carried into the PDF automatically at their original positions in the text.",
@@ -48,7 +53,7 @@ export default function WordToPdfPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "Word to PDF" },
         ]}
         h1="Word to PDF — Convert DOCX in Your Browser"

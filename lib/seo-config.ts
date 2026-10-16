@@ -14,8 +14,7 @@ export const siteConfig = {
     (process.env.NODE_ENV === "production"
       ? "https://www.pdfsmint.com"
       : "http://localhost:3000"),
-  ogImage: "/og-images/default.svg",
-  twitterHandle: "@pdfsmint",
+  ogImage: "/og-images/default.png",
   locale: "en_US",
   contactEmail: "pdfsmint@gmail.com",
 } as const;
@@ -35,13 +34,15 @@ function resolveOgImage(ogImage?: string): string {
  * Page-level metadata helper — use in every page's `export const metadata` or `generateMetadata`.
  */
 export function generateMetadata(
-  title: string,
+  /** A plain string gets the " | PDFsMint" suffix; `{ absolute }` is used as-is. */
+  title: string | { absolute: string },
   description: string,
   path: string,
   ogImage?: string,
 ): Metadata {
   const url = resolveAbsoluteUrl(path);
   const imageUrl = resolveOgImage(ogImage);
+  const socialTitle = typeof title === "string" ? title : title.absolute;
 
   return {
     title,
@@ -50,7 +51,7 @@ export function generateMetadata(
       canonical: url,
     },
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       url,
       siteName: siteConfig.name,
@@ -60,17 +61,15 @@ export function generateMetadata(
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: `${title} — ${siteConfig.name}`,
+          alt: socialTitle,
         },
       ],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: socialTitle,
       description,
-      site: siteConfig.twitterHandle,
-      creator: siteConfig.twitterHandle,
       images: [imageUrl],
     },
   };
@@ -82,7 +81,9 @@ export function generateRootMetadata(): Metadata {
     metadataBase: new URL(siteConfig.url),
     title: {
       default: siteConfig.titleSuffix,
-      template: `%s | ${siteConfig.titleSuffix}`,
+      // Keep the suffix short: page titles already carry their own keywords,
+      // and a long suffix pushes them past what search results display.
+      template: `%s | ${siteConfig.name}`,
     },
     description: siteConfig.description,
     applicationName: siteConfig.name,
@@ -117,8 +118,6 @@ export function generateRootMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      site: siteConfig.twitterHandle,
-      creator: siteConfig.twitterHandle,
       title: siteConfig.titleSuffix,
       description: siteConfig.description,
       images: [resolveOgImage()],

@@ -8,8 +8,8 @@ import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 export function generateMetadata(): Metadata {
   return buildMetadata(
-    "Blog",
-    "Practical guides on compressing, merging, and converting PDFs and images \u2014 written to help you get the best result from every tool.",
+    "PDF & Image Guides – Compress, Merge, Convert & Sign",
+    "Practical guides on compressing, merging, signing, and converting PDFs and images \u2014 including what each method keeps and what it can\u2019t.",
     "/blog",
   );
 }
@@ -23,10 +23,12 @@ export default function BlogIndexPage() {
     <Container size="wide" className="py-16 lg:py-20">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
       <header className="mb-10 max-w-2xl">
-        <h1 className="mb-3 text-3xl font-bold tracking-tight sm:text-4xl">Blog</h1>
+        <h1 className="mb-3 text-3xl font-bold tracking-tight sm:text-4xl">
+          PDF and image guides
+        </h1>
         <p className="text-base text-muted sm:text-lg">
           Practical, no-nonsense guides for getting the most out of your PDF and image
-          tools \u2014 how compression really works, what converts cleanly, and what
+          tools &mdash; how compression really works, what converts cleanly, and what
           doesn&rsquo;t.
         </p>
       </header>

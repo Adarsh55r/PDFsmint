@@ -1,6 +1,6 @@
 "use client";
 
-import { PDFDocument, type PDFImage } from "pdf-lib";
+import type { PDFDocument, PDFImage } from "pdf-lib";
 
 import { ToolError } from "@/lib/tool-error";
 import type { ProgressCallback } from "@/lib/processing";
@@ -49,6 +49,8 @@ export async function jpgToPdf(
   options: JpgToPdfOptions,
   onProgress?: ProgressCallback,
 ): Promise<Blob> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument } = await import("pdf-lib");
   if (files.length === 0) {
     throw new ToolError("EMPTY_INPUT", "Add at least one image to convert.");
   }

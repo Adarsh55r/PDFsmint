@@ -1,6 +1,6 @@
 "use client";
 
-import { PDFDocument } from "pdf-lib";
+import type { PDFDocument } from "pdf-lib";
 
 import type { NamedBlob } from "@/lib/download";
 import { ToolError } from "@/lib/tool-error";
@@ -73,6 +73,8 @@ export function parseRanges(
 }
 
 async function loadDoc(file: File): Promise<PDFDocument> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument } = await import("pdf-lib");
   try {
     const bytes = new Uint8Array(await file.arrayBuffer());
     return await PDFDocument.load(bytes, { ignoreEncryption: false });
@@ -95,6 +97,8 @@ async function extractPages(
   source: PDFDocument,
   pageIndices: number[],
 ): Promise<Blob> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument } = await import("pdf-lib");
   const out = await PDFDocument.create();
   const copied = await out.copyPages(source, pageIndices);
   copied.forEach((page) => out.addPage(page));

@@ -4,10 +4,10 @@ import { Download, SlidersHorizontal, Upload } from "lucide-react";
 import { WatermarkPdfWidget } from "./WatermarkPdfWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/watermark-pdf";
-const metaTitle = `Add Watermark to PDF Free – Text or Logo Stamp | ${siteConfig.name}`;
+const metaTitle = `Add Watermark to PDF Free – Text or Logo Stamp`;
 const metaDescription =
   "Stamp text or an image watermark across every page of a PDF in your browser. Adjust opacity, angle, and size — private and free.";
 
@@ -48,7 +48,7 @@ export default function WatermarkPdfPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "Watermark PDF" },
         ]}
         h1="Watermark PDF — Stamp Text or a Logo"

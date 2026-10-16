@@ -198,6 +198,14 @@ export function CompressPdfWidget() {
               quality instead of making it larger.
             </p>
           )}
+          {isSmaller && result.method === "rasterize" && (
+            <p className="mt-3 text-xs text-neutral-600">
+              To reach this size, pages were re-rendered as images. Text in the
+              compressed file can no longer be selected, searched, or copied,
+              and links or form fields are removed. Keep your original if you
+              need those.
+            </p>
+          )}
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row">

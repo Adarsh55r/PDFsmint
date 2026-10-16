@@ -1,6 +1,6 @@
 "use client";
 
-import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import type { PDFDocument } from "pdf-lib";
 
 import { ToolError } from "@/lib/tool-error";
 import type { ProgressCallback } from "@/lib/processing";
@@ -27,6 +27,8 @@ export type ImageWatermarkOptions = {
 export type WatermarkOptions = TextWatermarkOptions | ImageWatermarkOptions;
 
 async function loadDoc(file: File): Promise<PDFDocument> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument } = await import("pdf-lib");
   try {
     const bytes = new Uint8Array(await file.arrayBuffer());
     return await PDFDocument.load(bytes, { ignoreEncryption: false });
@@ -48,6 +50,8 @@ export async function watermarkPdf(
   options: WatermarkOptions,
   onProgress?: ProgressCallback,
 ): Promise<Blob> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { degrees, rgb, StandardFonts } = await import("pdf-lib");
   const doc = await loadDoc(file);
   const pages = doc.getPages();
   const total = pages.length;

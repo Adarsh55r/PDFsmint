@@ -4,10 +4,10 @@ import { Download, FileText, Upload } from "lucide-react";
 import { PdfToWordWidget } from "./PdfToWordWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/pdf-to-word";
-const metaTitle = `PDF to Word Free – Extract Text to Editable DOCX | ${siteConfig.name}`;
+const metaTitle = `PDF to Word Free – Extract Text to Editable DOCX`;
 const metaDescription =
   "Pull the text out of a PDF into an editable Word (.docx) file, entirely in your browser. Great for copy-editing digital PDFs — private and free.";
 
@@ -48,7 +48,7 @@ export default function PdfToWordPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "PDF to Word" },
         ]}
         h1="PDF to Word — Extract Editable Text"

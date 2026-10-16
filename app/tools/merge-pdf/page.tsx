@@ -4,10 +4,10 @@ import { Download, ListOrdered, Upload } from "lucide-react";
 import { MergePdfWidget } from "./MergePdfWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/merge-pdf";
-const metaTitle = `Merge PDF Files Online Free – Combine PDFs in Order | ${siteConfig.name}`;
+const metaTitle = `Merge PDF Files Online Free – Combine PDFs in Order`;
 const metaDescription =
   "Join several PDFs into one file right in your browser. Reorder pages, keep quality, and skip the upload — 100% private and free.";
 
@@ -48,7 +48,7 @@ export default function MergePdfPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "Merge PDF" },
         ]}
         h1="Merge PDF Files — Combine Documents Instantly"

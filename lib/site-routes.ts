@@ -3,12 +3,18 @@ import { popularTools } from "@/lib/navigation";
 
 export type SitemapRoute = {
   path: string;
+  /**
+   * Only set when we know when the content really changed. A lastmod that
+   * moves on every deploy teaches search engines to ignore it.
+   */
+  lastModified?: string;
   priority: number;
   changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
 };
 
 const marketingRoutes: SitemapRoute[] = [
-  { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/pdf-tools", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/image-tools", priority: 0.8, changeFrequency: "monthly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
   { path: "/privacy-policy", priority: 0.5, changeFrequency: "yearly" },
@@ -30,9 +36,21 @@ export function getAllSitemapRoutes(): SitemapRoute[] {
 
   const blogRoutes: SitemapRoute[] = blogPosts.map((post) => ({
     path: `/blog/${post.slug}`,
+    lastModified: post.updatedAt ?? post.publishedAt,
     priority: 0.6,
     changeFrequency: "monthly" as const,
   }));
 
-  return [homepage, ...toolRoutes, ...marketingRoutes, ...blogRoutes];
+  const latestPostDate = blogRoutes
+    .map((route) => route.lastModified ?? "")
+    .sort()
+    .at(-1);
+  const blogIndex: SitemapRoute = {
+    path: "/blog",
+    lastModified: latestPostDate,
+    priority: 0.7,
+    changeFrequency: "weekly",
+  };
+
+  return [homepage, ...toolRoutes, ...marketingRoutes, blogIndex, ...blogRoutes];
 }

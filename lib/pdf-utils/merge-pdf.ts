@@ -1,6 +1,6 @@
 "use client";
 
-import { PDFDocument } from "pdf-lib";
+import type { PDFDocument } from "pdf-lib";
 
 import { ToolError } from "@/lib/tool-error";
 import type { ProgressCallback } from "@/lib/processing";
@@ -13,6 +13,8 @@ export async function mergePdf(
   files: File[],
   onProgress?: ProgressCallback,
 ): Promise<Blob> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument } = await import("pdf-lib");
   if (files.length < 2) {
     throw new ToolError(
       "EMPTY_INPUT",

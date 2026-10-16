@@ -1,6 +1,6 @@
 "use client";
 
-import { PDFDocument } from "pdf-lib";
+import type { PDFDocument } from "pdf-lib";
 
 import { ToolError } from "@/lib/tool-error";
 import type { ProgressCallback } from "@/lib/processing";
@@ -42,7 +42,10 @@ export type SignPdfResult = {
 };
 
 async function loadPdfJs() {
-  const pdfjs = await import("pdfjs-dist");
+  // Legacy build: it bundles polyfills (e.g. Map.prototype.getOrInsertComputed)
+  // that the modern build assumes. Without them rendering fails on browsers
+  // that don't ship those built-ins yet. Worker in /public must match.
+  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
   pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
   return pdfjs;
 }
@@ -186,6 +189,8 @@ export async function applySignaturesToPdf(
   >[],
   onProgress?: ProgressCallback,
 ): Promise<SignPdfResult> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument } = await import("pdf-lib");
   if (placements.length === 0) {
     throw new ToolError(
       "EMPTY_INPUT",

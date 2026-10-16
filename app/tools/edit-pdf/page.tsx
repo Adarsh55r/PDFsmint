@@ -4,10 +4,10 @@ import { Download, PenLine, Upload } from "lucide-react";
 import { EditPdfWidget } from "./EditPdfWidget";
 import { faqPageJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { ToolPageTemplate } from "@/components/tools/ToolPageTemplate";
-import { generateMetadata as buildMetadata, siteConfig } from "@/lib/seo-config";
+import { generateMetadata as buildMetadata } from "@/lib/seo-config";
 
 const path = "/tools/edit-pdf";
-const metaTitle = `Edit PDF Free – Reorder, Rotate & Delete Pages | ${siteConfig.name}`;
+const metaTitle = `Edit PDF Free – Reorder, Rotate & Delete Pages`;
 const metaDescription =
   "Rearrange, rotate, and remove PDF pages visually in your browser. See page thumbnails, edit, and save — private, free, and no signup.";
 
@@ -48,7 +48,7 @@ export default function EditPdfPage() {
       <ToolPageTemplate
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "PDF Tools", href: "/" },
+          { label: "PDF Tools", href: "/pdf-tools" },
           { label: "Edit PDF" },
         ]}
         h1="Edit PDF — Reorder, Rotate & Remove Pages"
