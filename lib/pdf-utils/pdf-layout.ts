@@ -1,6 +1,6 @@
 "use client";
 
-import { PDFDocument, rgb, type PDFPage } from "pdf-lib";
+import type { PDFDocument, PDFPage } from "pdf-lib";
 
 import { ToolError } from "@/lib/tool-error";
 import type { ProgressCallback } from "@/lib/processing";
@@ -47,7 +47,7 @@ export const NUP_GRIDS: Record<
 
 const OUTER_MARGIN_PT = 18;
 const SLOT_GAP_PT = 8;
-const BORDER_COLOR = rgb(0.72, 0.76, 0.8);
+const BORDER_RGB = [0.72, 0.76, 0.8] as const;
 const BORDER_WIDTH = 0.75;
 
 /**
@@ -91,6 +91,8 @@ function fitRect(
 }
 
 async function loadSource(file: File): Promise<PDFDocument> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument } = await import("pdf-lib");
   try {
     const bytes = new Uint8Array(await file.arrayBuffer());
     return await PDFDocument.load(bytes, { ignoreEncryption: false });
@@ -118,6 +120,8 @@ export async function generateNUpLayout(
   options: NUpLayoutOptions,
   onProgress?: ProgressCallback,
 ): Promise<NUpLayoutResult> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument, rgb } = await import("pdf-lib");
   const {
     pagesPerSheet,
     orientation,
@@ -182,7 +186,7 @@ export async function generateNUpLayout(
           y: cellY,
           width: cellW,
           height: cellH,
-          borderColor: BORDER_COLOR,
+          borderColor: rgb(...BORDER_RGB),
           borderWidth: BORDER_WIDTH,
         });
       }

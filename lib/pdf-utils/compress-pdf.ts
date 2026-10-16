@@ -1,6 +1,5 @@
 "use client";
 
-import { PDFDocument } from "pdf-lib";
 import type { ProgressCallback } from "@/lib/processing";
 
 export type PdfCompressionErrorCode =
@@ -71,7 +70,10 @@ const DEFAULT_MAX_PAGES = 150;
 const RASTER_ADVANTAGE_THRESHOLD = 0.05;
 
 async function loadPdfJs() {
-  const pdfjs = await import("pdfjs-dist");
+  // Legacy build: it bundles polyfills (e.g. Map.prototype.getOrInsertComputed)
+  // that the modern build assumes. Without them rendering fails on browsers
+  // that don't ship those built-ins yet. Worker in /public must match.
+  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
   pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
   return pdfjs;
 }
@@ -93,6 +95,8 @@ async function canvasToJpegBlob(
 }
 
 async function optimizeWithPdfLib(bytes: Uint8Array): Promise<Uint8Array> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument } = await import("pdf-lib");
   const doc = await PDFDocument.load(bytes, { ignoreEncryption: false });
   return doc.save({ useObjectStreams: true });
 }
@@ -104,6 +108,8 @@ async function rasterizePdf(
   options: RasterOptions,
   onProgress?: ProgressCallback,
 ): Promise<Uint8Array> {
+  // Loaded on demand so pdf-lib stays out of the initial page bundle.
+  const { PDFDocument } = await import("pdf-lib");
   const pdfjs = await loadPdfJs();
   // pdf.js transfers (detaches) the ArrayBuffer it is given. Hand it a copy so
   // the caller's original `bytes` stay usable (e.g. as the "original" fallback).

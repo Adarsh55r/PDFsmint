@@ -18,7 +18,10 @@ export type PdfToJpgOptions = {
 };
 
 async function loadPdfJs() {
-  const pdfjs = await import("pdfjs-dist");
+  // Legacy build: it bundles polyfills (e.g. Map.prototype.getOrInsertComputed)
+  // that the modern build assumes. Without them rendering fails on browsers
+  // that don't ship those built-ins yet. Worker in /public must match.
+  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
   pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
   return pdfjs;
 }
